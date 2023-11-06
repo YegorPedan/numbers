@@ -1,17 +1,13 @@
 from itertools import product
 
-digits = list(range(9, -1, -1))
+digits = [str(x) for x in range(9, -1, -1)]
+sings = ['+', '-', '']
 
-operators = ['+', '-', '']
-
-for combo in product(operators, repeat=9):
+for sign_comb in product(sings, repeat=9):
     expression = ''
-    for i in range(9):
-        expression += str(digits[i]) + combo[i]
+    for index in range(9):
+        expression += digits[index] + sign_comb[index]
+    expression += '0'
 
-    expression += str(digits[-1])
-
-    result = eval(expression)
-
-    if result == 200:
-        print(expression, '=', result)
+    if eval(expression) == 200:
+        print(f'{expression} = 200')
